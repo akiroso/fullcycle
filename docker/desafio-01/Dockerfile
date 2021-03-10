@@ -1,0 +1,5 @@
+FROM scratch
+
+COPY desafio /
+
+CMD ["/desafio"]
