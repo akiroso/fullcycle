@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  node-server:
+    build:
+      context: ./node-server
+      dockerfile: Dockerfile
+    networks: 
+      - infra-network
+    volumes: 
+      - ./node-server:/source/
+    expose: 
+      - 3000
+    depends_on: 
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports: 
+      - "8080:80"
+    networks: 
+      - infra-network
+    depends_on: 
+      - node-server
+  
+  db:
+    image: "mysql"
+    networks: 
+      - infra-network
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: node-server
+      MYSQL_PASSWORD: node-server
+      MYSQL_DATABASE: node-db
+    volumes: 
+      - ./db-data:/var/lib/mysql
+    expose: 
+      - 3306
+
+networks: 
+  infra-network:
+    driver: bridge
+
+volumes: 
+  node-server:
