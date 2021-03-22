@@ -4,6 +4,7 @@ services:
     build:
       context: ./node-server
       dockerfile: Dockerfile
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 120s npm run dev:watch
     networks: 
       - infra-network
     volumes: 
