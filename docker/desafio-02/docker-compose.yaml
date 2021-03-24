@@ -1,14 +1,12 @@
-version: "3.9"
+version: "3"
 services:
   node-server:
     build:
       context: ./node-server
       dockerfile: Dockerfile
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 120s npm run dev:watch
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 120s node index.js
     networks: 
       - infra-network
-    volumes: 
-      - ./node-server:/source/
     expose: 
       - 3000
     depends_on: 

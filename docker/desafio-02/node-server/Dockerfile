@@ -9,10 +9,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 WORKDIR /source
 
-ADD package.json /source
+COPY . .
 
 RUN npm install --silent
 
-ADD . /source
-
-CMD [ "npm", "run", "dev:watch" ]
+CMD [ "npm", "run", "start" ]
