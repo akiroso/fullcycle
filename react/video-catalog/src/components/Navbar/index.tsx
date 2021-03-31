@@ -6,6 +6,9 @@ const style = makeStyles((theme: Theme) => ({
     toolbar: {
         backgroundColor: "blue",
     },
+    menu: {
+        textAlign: 'right',
+    }
 }));
 
 export const Navbar: React.FC = () => {
@@ -13,7 +16,7 @@ export const Navbar: React.FC = () => {
     return (
         <AppBar>
             <Toolbar className={classes.toolbar}>
-                <Menu></Menu>            
+                <Menu/>
             </Toolbar>
         </AppBar>
     )

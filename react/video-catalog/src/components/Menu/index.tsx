@@ -4,9 +4,9 @@ import React from 'react';
 
 export const Menu: React.FC = () => {
     const [anchor, setAnchor] = React.useState(null);
-    const open = Boolean(anchor);
     const handleClick = (event: any) => setAnchor(event.currentTarget);
     const handleClose = () => setAnchor(null);
+    const open = Boolean(anchor);
     return (
         <React.Fragment>
             <IconButton
